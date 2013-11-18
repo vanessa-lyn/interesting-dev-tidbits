@@ -1,0 +1,121 @@
+@keyframes bringUpSun { 
+  0% { 
+    top: 550px;
+  }
+  100%{
+    top: 20px;
+  }
+}
+@-webkit-keyframes bringUpSun { 
+  0% { 
+    top: 550px;
+  }
+  100%{
+    top: 20px;
+  }
+}
+
+@keyframes bringDownMoon { 
+  0% { 
+    top: 20px;
+  }
+  100%{
+    top: 550px;
+  }
+}
+@-webkit-keyframes bringDownMoon { 
+  0% { 
+    top: 20px;
+  }
+  100%{
+    top: 550px;
+  }
+}
+
+@keyframes hideElement { 
+  0% { 
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+@-webkit-keyframes hideElement { 
+  0% { 
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+@keyframes showElement { 
+  0% { 
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@-webkit-keyframes showElement { 
+  0% { 
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes moveInClouds { 
+  0% { 
+    left: -500px;
+  }
+  100%{
+    left: 0px;
+  }
+}
+
+@-webkit-keyframes moveInClouds { 
+  0% { 
+    left: -500px;
+  }
+  100%{
+    left: 0px;
+  }
+}
+
+@keyframes flyHelicopter { 
+  0% { 
+    left: 500px;
+  }
+  100%{
+    left: -220px;
+  }
+}
+@-webkit-keyframes flyHelicopter { 
+  0% { 
+    left: 500px;
+  }
+  100%{
+    left: -220px;
+  }
+}
+
+
+@keyframes moveOutClouds { 
+  0% { 
+    left: 0px;
+  }
+  100%{
+    left: 500px;
+  }
+}
+
+@-webkit-keyframes moveOutClouds { 
+  0% { 
+    left: 0px;
+  }
+  100%{
+    left: 500px;
+  }
+}
