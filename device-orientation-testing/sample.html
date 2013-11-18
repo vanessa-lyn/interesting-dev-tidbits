@@ -91,6 +91,12 @@ if(isMobile.any()){
 else{
     alert("not mobile");
 }
+
+if (window.DeviceMotionEvent) {
+    alert("supported");
+} else {
+   alert( "DeviceMotion NOT supported" );
+}
  
 var shakeInterval = setInterval(shakeIntervalFunction, 200);
 
