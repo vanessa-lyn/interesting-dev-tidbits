@@ -5,13 +5,8 @@
     Vanessa Garcia
 
 */
-//alert("init");
-
-// Check for CSS  support
-// read json and create animation based off of it 
 
 var animType = '';
-
 
 function checkAnimSupport(){
     if(('animation' in document.body.style) || ('-webkit-animation' in document.body.style) || ('-moz-animation' in document.body.style)) {
@@ -35,13 +30,12 @@ function delegateAnim(obj){
 
 
 function cssAnim(obj){
-    console.log('cssAnim');
-    
+    //console.log('cssAnim');
     var animEl    = obj.element;
-    //var animFill  = "forwards";
+    var animDir   = obj.direction ? obj.direction : "normal"
     var animFill  = obj.fill ? obj.fill : "forwards";
     var animDelay = obj.delay ? obj.delay : "0";
-    var animProp  = obj.keyframe +" "+obj.duration+"ms "+ obj.easing +" "+ animDelay+"ms " + animFill;
+    var animProp  = obj.keyframe +" "+obj.duration+"ms "+ obj.easing +" "+ animDelay+"ms " + animDir +" "+ animFill;
       
     $(animEl).css("animation", animProp);
     $(animEl).css("-webkit-animation", animProp);
@@ -93,7 +87,7 @@ function animateSequence(){
         fill: "forwards",
         duration: 2000,
         delay: 0,
-        easing: "ease-out",
+        easing: "ease-in-out",
         fallbackProps: {
           "top": 20
         }
@@ -102,7 +96,6 @@ function animateSequence(){
       delegateAnim({
         element: ".moon",
         keyframe: "bringDownMoon",
-        fill: "forwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -125,10 +118,9 @@ function animateSequence(){
     };
 
     var moveClouds = function(){
-        delegateAnim({
+      delegateAnim({
         element: ".clouds",
         keyframe: "moveInClouds",
-        fill: "forwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -137,18 +129,29 @@ function animateSequence(){
         },
         callback: showHelicopter
       });
+
+      // delegateAnim({
+      //   element: ".cloud1",
+      //   keyframe: "moveIndivCloud1",
+      //   duration: 2000,
+      //   delay: 0,
+      //   easing: "ease-in",
+      //   fallbackProps: {
+      //     "left": 220
+      //   }
+      // });
     };
 
     var showHelicopter = function(){
         delegateAnim({
         element: ".plane",
         keyframe: "flyHelicopter",
-        fill: "forwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
         fallbackProps: {
-          "left": -220
+          "left": -220,
+          // "top": 320
         },
         callback: removeClouds
       });
@@ -158,7 +161,6 @@ function animateSequence(){
         delegateAnim({
         element: ".clouds",
         keyframe: "moveOutClouds",
-        fill: "forwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -173,7 +175,9 @@ function animateSequence(){
       delegateAnim({
         element: ".sun",
         keyframe: "bringDownMoon",
-        fill: "forwards",
+        //keyframe: "bringUpSun",
+        // direction: "reverse",
+        // fill: "backwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -185,7 +189,9 @@ function animateSequence(){
       delegateAnim({
         element: ".moon",
         keyframe: "bringUpSun",
-        fill: "forwards",
+        //keyframe: "bringDownMoon",
+        //direction: "reverse",
+        //fill: "backwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -197,7 +203,6 @@ function animateSequence(){
       delegateAnim({
         element: ".night-sky",
         keyframe: "showElement",
-        fill: "forwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -215,13 +220,11 @@ function createStars(){
     var starContainer = $('.night-sky');
     var numStars = 50;
     var createEm = '';
-
     for(var i=0; i<numStars; i++){
         var randomNum1 = Math.random();
-        console.log("create star");
+        //console.log("create star");
         createEm += "<span style='top:"+Math.random()*500+"; left:"+Math.random()*500+"; opacity:"+Math.random()+"'>&#9734;</span>"
     }
-
     starContainer.html(createEm);
 }
 

@@ -15,6 +15,7 @@
   }
 }
 
+
 @keyframes bringDownMoon { 
   0% { 
     top: 20px;
@@ -31,6 +32,7 @@
     top: 550px;
   }
 }
+
 
 @keyframes hideElement { 
   0% { 
@@ -49,6 +51,7 @@
   }
 }
 
+
 @keyframes showElement { 
   0% { 
     opacity: 0;
@@ -66,6 +69,7 @@
   }
 }
 
+
 @keyframes moveInClouds { 
   0% { 
     left: -500px;
@@ -74,7 +78,6 @@
     left: 0px;
   }
 }
-
 @-webkit-keyframes moveInClouds { 
   0% { 
     left: -500px;
@@ -84,12 +87,26 @@
   }
 }
 
+
+@keyframes moveIndivCloud1 { 
+  100%{
+    left: 220px;
+  }
+}
+@-webkit-keyframes moveIndivCloud1 { 
+  100%{
+    left: 220px;
+  }
+}
+
+
 @keyframes flyHelicopter { 
   0% { 
     left: 500px;
   }
   100%{
     left: -220px;
+    /*top: 320px;*/
   }
 }
 @-webkit-keyframes flyHelicopter { 
@@ -98,6 +115,7 @@
   }
   100%{
     left: -220px;
+    /*top: 320px;*/
   }
 }
 
@@ -110,7 +128,6 @@
     left: 500px;
   }
 }
-
 @-webkit-keyframes moveOutClouds { 
   0% { 
     left: 0px;

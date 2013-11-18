@@ -59,47 +59,49 @@ h3{
     position: absolute;
     left: -490px;
 }
-.cloud1{
-    position: absolute;
-    top: 60px;
-    opacity: .7;
-}
-.cloud2{
-    position: absolute;
-    top: 120px;
-    left:100px;
-    opacity: .6;
-}
-.cloud3{
-    position: absolute;
-    top: 0px;
-    left: 220px;
-    opacity: .8;
-}
-.puff{
-    border-radius: 90px / 30px;
-    width: 160px;
-    height: 50px;
-    background: #fff;
-    position: absolute;
-    top: 10px;
-}
-.cloud-12 {
-    left: 50px;
-    top: 0;
-}
-.cloud-13 {
-    left: 110px;
-    top: 20px;
-}
+    .cloud1{
+        position: absolute;
+        top: 60px;
+        opacity: .7;
+    }
+    .cloud2{
+        position: absolute;
+        top: 120px;
+        left:100px;
+        opacity: .6;
+    }
+    .cloud3{
+        position: absolute;
+        top: 0px;
+        left: 220px;
+        /*left: 0px;*/
+        opacity: .8;
+    }
+        .puff{
+            border-radius: 90px / 30px;
+            width: 160px;
+            height: 50px;
+            background: #fff;
+            position: absolute;
+            top: 10px;
+        }
+        .cloud-12 {
+            left: 50px;
+            top: 0;
+        }
+        .cloud-13 {
+            left: 110px;
+            top: 20px;
+        }
 
 .plane{
     width: 206px;
-    height:104px;
+    height:124px;
     background: url(../img/helicopter.png);
     position: absolute;
     left: 500px;
     top: 150px;
+    z-index: 6;
 }
 
 .ground{
