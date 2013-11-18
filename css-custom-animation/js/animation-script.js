@@ -24,6 +24,15 @@ function checkAnimSupport(){
     $('.type').text(animType);
 }
 
+function delegateAnim(obj){
+    if(animType === "CSS"){
+      cssAnim(obj);
+    }
+    else{
+      jsAnim(obj);
+    }
+}
+
 
 function cssAnim(obj){
     console.log('cssAnim');
@@ -44,12 +53,41 @@ function cssAnim(obj){
     } 
 }
 
+//JS Fallback Animation
+function jsAnim(obj){
+    //console.log("run JS fallback");
+    var animEl    = obj.element;
+    var animDelay = obj.delay ? obj.delay : "0";
+    var anim = {};
+
+    for (var k in obj.fallbackProps){
+      if (obj.fallbackProps.hasOwnProperty(k)) {
+        anim[k] = obj.fallbackProps[k];    
+      }
+    }
+    setTimeout(function(){
+      if($(animEl).length > 1){
+        $(animEl).each(function( index ){
+          if(index < $(animEl).length-1){
+            $(animEl).eq(index).animate(anim, obj.duration);
+          }
+          else{
+            $(animEl).eq(index).animate(anim, obj.duration, obj.callback);
+          }
+        });
+      }
+      else{
+        $(animEl).animate(anim, obj.duration, obj.callback);
+      }
+    }, animDelay);
+}
+
 function animateSequence(){
     console.log("animation sequence");
     // var self = this;
 
     var bringUpSun = function(){
-      cssAnim({
+      delegateAnim({
         element: ".sun",
         keyframe: "bringUpSun",
         fill: "forwards",
@@ -57,12 +95,11 @@ function animateSequence(){
         delay: 0,
         easing: "ease-out",
         fallbackProps: {
-          "top": 0
-        }//,
-        // callback: showQuads
+          "top": 20
+        }
       });
 
-      cssAnim({
+      delegateAnim({
         element: ".moon",
         keyframe: "bringDownMoon",
         fill: "forwards",
@@ -71,25 +108,24 @@ function animateSequence(){
         easing: "ease-out",
         fallbackProps: {
           "top": 550
-        }//,
-        // callback: showQuads
+        }
       });
 
-      cssAnim({
+      delegateAnim({
         element: ".night-sky",
         keyframe: "hideElement",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
         fallbackProps: {
-          "top": 0
+          "opacity": 0
         },
         callback: moveClouds
       });
     };
 
     var moveClouds = function(){
-        cssAnim({
+        delegateAnim({
         element: ".clouds",
         keyframe: "moveInClouds",
         fill: "forwards",
@@ -104,7 +140,7 @@ function animateSequence(){
     };
 
     var showHelicopter = function(){
-        cssAnim({
+        delegateAnim({
         element: ".plane",
         keyframe: "flyHelicopter",
         fill: "forwards",
@@ -119,7 +155,7 @@ function animateSequence(){
     };
 
     var removeClouds = function(){
-        cssAnim({
+        delegateAnim({
         element: ".clouds",
         keyframe: "moveOutClouds",
         fill: "forwards",
@@ -134,21 +170,9 @@ function animateSequence(){
     };
 
     var bringTheNight = function(){
-      cssAnim({
+      delegateAnim({
         element: ".sun",
         keyframe: "bringDownMoon",
-        fill: "forwards",
-        duration: 2000,
-        delay: 0,
-        easing: "ease-out",
-        fallbackProps: {
-          "top": 0
-        }
-      });
-
-      cssAnim({
-        element: ".moon",
-        keyframe: "bringUpSun",
         fill: "forwards",
         duration: 2000,
         delay: 0,
@@ -158,7 +182,19 @@ function animateSequence(){
         }
       });
 
-      cssAnim({
+      delegateAnim({
+        element: ".moon",
+        keyframe: "bringUpSun",
+        fill: "forwards",
+        duration: 2000,
+        delay: 0,
+        easing: "ease-out",
+        fallbackProps: {
+          "top": 20
+        }
+      });
+
+      delegateAnim({
         element: ".night-sky",
         keyframe: "showElement",
         fill: "forwards",
@@ -166,7 +202,7 @@ function animateSequence(){
         delay: 0,
         easing: "ease-out",
         fallbackProps: {
-          "top": 0
+          "opacity": 1
         }
       });
     };
