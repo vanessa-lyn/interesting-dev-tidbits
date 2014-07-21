@@ -9,12 +9,12 @@
 var animType = '';
 
 function checkAnimSupport(){
-    if(('animation' in document.body.style) || ('-webkit-animation' in document.body.style) || ('-moz-animation' in document.body.style)) {
-        animType = "CSS";
-    }
-    else{
+    // if(('animation' in document.body.style) || ('-webkit-animation' in document.body.style) || ('-moz-animation' in document.body.style)) {
+    //     animType = "CSS";
+    // }
+    // else{
       animType = "JS";
-    }
+    // }
 
     $('.type').text(animType);
 }
@@ -107,13 +107,14 @@ function animateSequence(){
       delegateAnim({
         element: ".night-sky",
         keyframe: "hideElement",
-        duration: 2000,
+        duration: 3000,
         delay: 0,
         easing: "ease-out",
         fallbackProps: {
           "opacity": 0
         },
-        callback: moveClouds
+        callback: showHelicopter
+        // callback: moveClouds
       });
     };
 
@@ -127,7 +128,8 @@ function animateSequence(){
         fallbackProps: {
           "left": 0
         },
-        callback: showHelicopter
+        callback: removeClouds
+        // callback: showHelicopter
       });
 
       // delegateAnim({
@@ -146,14 +148,15 @@ function animateSequence(){
         delegateAnim({
         element: ".plane",
         keyframe: "flyHelicopter",
-        duration: 2000,
-        delay: 0,
+        duration: 3000,
+        delay: 1000,
         easing: "ease-out",
         fallbackProps: {
           "left": -220,
-          // "top": 320
+          "top": 320
         },
-        callback: removeClouds
+        callback: moveClouds
+        // callback: removeClouds
       });
     };
 
@@ -188,10 +191,10 @@ function animateSequence(){
 
       delegateAnim({
         element: ".moon",
-        keyframe: "bringUpSun",
-        //keyframe: "bringDownMoon",
-        //direction: "reverse",
-        //fill: "backwards",
+        // keyframe: "bringUpSun",
+        keyframe: "bringDownMoon",
+        direction: "reverse",
+        fill: "backwards",
         duration: 2000,
         delay: 0,
         easing: "ease-out",
@@ -213,7 +216,6 @@ function animateSequence(){
     };
    
     bringUpSun();
-
 }
 
 function createStars(){
@@ -236,4 +238,6 @@ function init(){
 
 
 init();
+
+
 
