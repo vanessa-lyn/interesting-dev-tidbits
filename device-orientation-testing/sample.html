@@ -1,0 +1,129 @@
+<h2>Sample Orientation</h2>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+
+var accX;
+var accY;
+var accZ;
+var threshold = 15;
+var orientBeta;
+
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
+
+/////////////////////////////
+//DEVICE TRACKING
+/////////////////////////////
+function trackDeviceMotion(evt){
+    console.log('detecting shake');
+    //console.log("accelerate "+evt.accelerationIncludingGravity); 
+    //var accl = evt.acceleration;
+    var accl = evt.accelerationIncludingGravity;
+    console.log(accl.x,accl.y,accl.z); 
+
+    accX = accl.x;
+    accY = accl.y;
+    accZ = accl.z;
+} 
+
+function trackDeviceOrientation(data){
+    //console.log(data.alpha,data.beta,data.gamma);
+    console.log(data.beta);
+    orientBeta = data.beta;
+}
+
+
+
+/////////////////////////////
+//ANIMATIONS
+/////////////////////////////
+function shakeAnimation(){
+    alert("EXPLOSIONS!");
+    setTimeout(function(){
+        shakeInterval = setInterval(shakeIntervalFunction, 200);
+    }, 200);
+    
+}
+
+function playRightAnimation(){
+    alert('play right animation');
+    setTimeout(function(){
+       orientInterval = setInterval(orientIntervalFunction, 500); 
+   }, 200);
+    
+}
+
+function playLeftAnimation(){
+    alert('play left animation');
+    setTimeout(function(){
+       orientInterval = setInterval(orientIntervalFunction, 500); 
+   }, 200);
+}
+
+
+//$(function(){
+console.log("listening");
+if(isMobile.any()){
+    alert('mobile');
+    window.addEventListener('deviceorientation', trackDeviceOrientation, false);
+    window.addEventListener("devicemotion", trackDeviceMotion);
+}
+else{
+    alert("not mobile");
+}
+
+if (window.DeviceMotionEvent) {
+    alert("supported");
+} else {
+   alert( "DeviceMotion NOT supported" );
+}
+ 
+var shakeInterval = setInterval(shakeIntervalFunction, 200);
+
+function shakeIntervalFunction(){
+    console.log("checking shake");
+    if (accX > threshold || accY > threshold || accZ > threshold) {
+        shakeAnimation();
+        clearInterval(shakeInterval);
+    }
+}
+
+var orientInterval = setInterval(orientIntervalFunction, 500);
+
+function orientIntervalFunction(){
+    console.log('checking orientation');
+    if (orientBeta <= -20) { 
+        playRightAnimation();
+        clearInterval(orientInterval);
+        
+    }
+    else if(orientBeta >= 20){
+        playLeftAnimation();
+        clearInterval(orientInterval);
+
+    }
+}
+
+
+//});
+</script>
