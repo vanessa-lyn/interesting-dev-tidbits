@@ -11,7 +11,10 @@
   <div id='content' ng-app='MyTutorialApp' ng-controller='MainController'>
     <input type='text' ng-model='searchText' />
     <ul>
-      <li ng-repeat='person in people | filter:searchText'>#{{person.id}} {{person.name}}</li>
+      <li ng-repeat='person in people | filter:searchText' ng-show='person.live == true'>#{{person.id}} {{person.name}}</li>
+    </ul>
+    <ul>
+      <li ng-repeat='person in people | filter:searchText' ng-hide='person.live == false'>#{{person.id}} {{person.name}}</li>
     </ul>
   </div>
 </body>
